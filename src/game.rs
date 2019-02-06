@@ -132,6 +132,34 @@ impl Game {
             Box::new(BwIterator::from(iter))
         }
     }
+
+    pub fn mapFileName(&self) -> BwString {
+        unsafe {
+            let string = sys::Game_mapFileName(self.0) as *mut sys::BwString;
+            BwString::from_raw(string)
+        }
+    }
+
+    pub fn mapPathName(Game* self) -> BwString {
+        unsafe {
+            let string = sys::Game_mapPathName(self.0) as *mut sys::BwString;
+            BwString::from_raw(string)
+        }
+    }
+
+    pub fn mapName(Game* self) -> BwString {
+        unsafe {
+            let string = sys::Game_mapName(self.0) as *mut sys::BwString;
+            BwString::from_raw(string)
+        }
+    }
+
+    pub fn mapHash(Game* self) -> BwString {
+        unsafe {
+            let string = sys::Game_mapHash(self.0) as *mut sys::BwString;
+            BwString::from_raw(string)
+        }
+    }
 }
 
 impl FromRaw for Game {

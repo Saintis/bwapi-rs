@@ -8,6 +8,7 @@ use player::Player;
 use region::Region;
 use position::Position;
 use color::Color;
+use string::BwString;
 
 use std::os::raw::c_void as void;
 
@@ -133,31 +134,31 @@ impl Game {
         }
     }
 
-    pub fn mapFileName(&self) -> BwString {
+    pub fn mapFileName(&self) -> String {
         unsafe {
             let string = sys::Game_mapFileName(self.0) as *mut sys::BwString;
-            BwString::from_raw(string)
+            String::from(BwString::from_raw(string))
         }
     }
 
-    pub fn mapPathName(Game* self) -> BwString {
+    pub fn mapPathName(&self) -> String {
         unsafe {
             let string = sys::Game_mapPathName(self.0) as *mut sys::BwString;
-            BwString::from_raw(string)
+            String::from(BwString::from_raw(string))
         }
     }
 
-    pub fn mapName(Game* self) -> BwString {
+    pub fn mapName(&self) -> String {
         unsafe {
             let string = sys::Game_mapName(self.0) as *mut sys::BwString;
-            BwString::from_raw(string)
+            String::from(BwString::from_raw(string))
         }
     }
 
-    pub fn mapHash(Game* self) -> BwString {
+    pub fn mapHash(&self) -> String {
         unsafe {
             let string = sys::Game_mapHash(self.0) as *mut sys::BwString;
-            BwString::from_raw(string)
+            String::from(BwString::from_raw(string))
         }
     }
 }

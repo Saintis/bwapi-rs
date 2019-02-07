@@ -137,28 +137,28 @@ impl Game {
     pub fn mapFileName(&self) -> String {
         unsafe {
             let string = sys::Game_mapFileName(self.0) as *mut sys::BwString;
-            String::from(BwString::from_raw(string))
+            String::from(string)
         }
     }
 
     pub fn mapPathName(&self) -> String {
         unsafe {
             let string = sys::Game_mapPathName(self.0) as *mut sys::BwString;
-            String::from(BwString::from_raw(string))
+            String::from(string)
         }
     }
 
     pub fn mapName(&self) -> String {
         unsafe {
             let string = sys::Game_mapName(self.0) as *mut sys::BwString;
-            String::from(BwString::from_raw(string))
+            String::from(string)
         }
     }
 
     pub fn mapHash(&self) -> String {
         unsafe {
             let string = sys::Game_mapHash(self.0) as *mut sys::BwString;
-            String::from(BwString::from_raw(string))
+            String::from(string)
         }
     }
 }

@@ -5,6 +5,8 @@ pub mod from_raw;
 
 pub mod position;
 pub mod color;
+pub mod race;
+pub mod order;
 
 pub mod string;
 pub mod iterator;

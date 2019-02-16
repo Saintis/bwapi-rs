@@ -2,6 +2,7 @@
 use bwapi_sys as sys;
 use iterator::BwIterator;
 use from_raw::FromRaw;
+use order::Order;
 
 use std::os::raw::c_void as void;
 
@@ -253,6 +254,15 @@ impl UnitType {
     fn as_sys(self) -> sys::UnitType {
         sys::UnitType { id: self as i32 }
     }
+
+    fn is_worker(self) -> bool {
+        match self {
+            UnitType::Terran_SCV |
+            UnitType::Zerg_Drone |
+            UnitType::Protoss_Probe => true,
+            _ => false
+        }
+    }
 }
 
 impl Unit {
@@ -269,6 +279,19 @@ impl Unit {
             assert!(raw_type < UnitType::MAX as i32);
 
             ::std::mem::transmute(raw_type)
+        }
+    }
+
+    pub fn get_hit_points(&self) -> i32 {
+        unsafe {
+            sys::Unit_getHitPoints(self.0)
+        }
+    }
+
+    pub fn get_order(&self) -> Order {
+        unsafe {
+            let raw_order = sys::Unit_getOrder(self.0);
+            Order::from(raw_order)
         }
     }
 
@@ -299,6 +322,30 @@ impl Unit {
     pub fn is_carrying_gas(&self) -> bool {
         unsafe {
             sys::Unit_isCarryingGas(self.0)
+        }
+    }
+
+    pub fn is_completed(&self) -> bool {
+        unsafe {
+            sys::Unit_isCompleted(self.0)
+        }
+    }
+
+    pub fn is_constructing(&self) -> bool {
+        unsafe {
+            sys::Unit_isConstructing(self.0)
+        }
+    }
+
+    pub fn is_powered(&self) -> bool {
+        unsafe {
+            sys::Unit_isPowered(self.0)
+        }
+    }
+
+    pub fn is_upgrading(&self) -> bool {
+        unsafe {
+            sys::Unit_isUpgrading(self.0)
         }
     }
 

@@ -5,6 +5,7 @@ use iterator::BwIterator;
 use unit::Unit;
 use from_raw::FromRaw;
 use color::Color;
+use race::Race;
 
 use std::os::raw::c_void as void;
 
@@ -34,6 +35,11 @@ impl Player {
     pub fn color(&self) -> Color {
         let color = unsafe { sys::Player_getColor(self.0) };
         color.into()
+    }
+
+    pub fn race(&self) -> Race {
+        let race = unsafe { sys::Player_getRace(self.0) };
+        race.into()
     }
 }
 

@@ -1,6 +1,7 @@
 use bwapi_sys as sys;
 
 #[repr(i32)]
+#[allow(non_camel_case_types)]
 #[derive(PartialEq, PartialOrd, Copy, Clone)]
 pub enum Order {
     Die,

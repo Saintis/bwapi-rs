@@ -255,7 +255,7 @@ impl UnitType {
         sys::UnitType { id: self as i32 }
     }
 
-    fn is_worker(self) -> bool {
+    pub fn is_worker(self) -> bool {
         match self {
             UnitType::Terran_SCV |
             UnitType::Zerg_Drone |
